@@ -42,9 +42,12 @@ header {
 .gameimg {
     width: 13%;
     height: 300px;
-    position:absolute;
-  }
 
+  }
+#t23 {
+  position: absolute;
+
+}
 #crosshair{
     position:absolute;
     padding: 0 ;

@@ -6,6 +6,7 @@ $( document ).ready(function() {
     CrossHairMove();
     movePlayer();
     countShots();
+
     //move();
 });
 /*create global variables needed for random movement of target*/
@@ -22,16 +23,28 @@ like the amount of times shots fired, number of targets hit,
 percentage etc*/
 var $shotsFired = 0,
     $targetHit = 0,
-    $percentage;
+    $percentage = 0;
 
-/*create function to track the number of shots fired*/
+/*create function to track the number of shots fired. each time the
+user clicks on the mouse the variable should increase by 1
+and return the new variable*/
 function countShots() {
     $(document).click(function() {
       $shotsFired++;
+        console.log("shots fired" +$shotsFired);
       return $shotsFired;
-      console.log($shotsFired);
+
     })
   }
+
+  /*create function to calculate the player percentage.
+  the percentage must be equal to target hit divided by shots fired.*/
+  function calcPercentage() {
+   $percentage = Math.floor(($targetHit/$shotsFired)*100);
+    console.log ($percentage);
+  }
+
+
 
 
 /* make my players diappear when they are clicked
@@ -43,8 +56,10 @@ var $img = $('.gameimg');
 function makeImagesDisappear() {
 
     $(this).css('visibility' , 'hidden');
+    $targetHit++;
 
-    console.log($targetHit);
+    console.log("target hit" + $targetHit);
+    return $targetHit;
 }
 $img.click(makeImagesDisappear);
 

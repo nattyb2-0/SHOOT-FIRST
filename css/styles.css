@@ -4,13 +4,26 @@
     padding: 0;
 }
 
+body {
+  background-image: url('http://static3.gamespot.com/uploads/original/536/5360430/3056972-codmw+remastered_war+pig_wm.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
  .main-game{
     width: 100%;
     height: auto;
-    background-color: black;
 }
+
 
 .gameimg {
     width: 13%;
     height: 300px;
   }
+
+  #crosshair{
+  position:absolute;
+  padding: 0 ;
+  margin: 0;
+  width:100px;
+  cursor: none;
+}

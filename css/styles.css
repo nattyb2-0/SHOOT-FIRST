@@ -4,12 +4,30 @@
     padding: 0;
 }
 
-body {
-  background-image: url('http://static3.gamespot.com/uploads/original/536/5360430/3056972-codmw+remastered_war+pig_wm.jpg');
+.game-body {
+    background-image: url('http://static3.gamespot.com/uploads/original/536/5360430/3056972-codmw+remastered_war+pig_wm.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
- .main-game{
+
+header {
+    width: 100%;
+    position: fixed;
+    z-index: 9000;
+    background-color: black;
+    color: white;
+    font-size: 25px;
+}
+
+.flex-box1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 1000px;
+}
+
+.main-game{
     width: 100%;
     height: auto;
 }
@@ -18,12 +36,76 @@ body {
 .gameimg {
     width: 13%;
     height: 300px;
+    position:absolute;
   }
 
-  #crosshair{
-  position:absolute;
-  padding: 0 ;
-  margin: 0;
-  width:100px;
-  cursor: none;
+#crosshair{
+    position:absolute;
+    padding: 0 ;
+    margin: 0;
+    width:100px;
+    cursor: none;
 }
+
+.landing-body {
+      width:100%;
+      height:100%;
+      background-color: rgba(0,0,0,0.4);
+}
+
+.form {
+    width: 80%;
+    height: 700px;
+    background-image: url('http://cdn.segmentnext.com/wp-content/uploads/2016/01/Call-of-Duty-Black-Ops-3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 90px;
+}
+
+#form {
+  position: absolute;
+  top: 350px;
+  left: 500px;
+}
+
+
+#submit {
+  width: 390px;
+  display: block;
+  height: 50px;
+  background-color: yellow;
+  font-size: 26px;
+  margin-top: 10px;
+
+}
+
+
+input {
+  width: 100px;
+  height: 50px;
+  margin:5px;
+  padding: 8px;
+}
+
+
+.flex-box2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 900px;
+  background-color: white;
+}
+
+.rules {
+  width:400px;
+  height: 300px;
+  background-color: rgba(255,0,0,.4);
+  position: absolute;
+  top: 850px;
+  left: 500px;
+}
+body {
+   cursor: url(images/cHair.png ), auto;
+}
+

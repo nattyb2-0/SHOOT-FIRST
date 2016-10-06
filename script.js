@@ -3,7 +3,9 @@ console.log('hello');
 //set up jquery for it to work upon the page loading
 $( document ).ready(function() {
     console.log( "ready!" );
-    CrossHairMove()
+    CrossHairMove();
+    movePlayer();
+    //move();
 });
 
 /* make my players diappear when they are clicked
@@ -20,12 +22,12 @@ $img.mousedown(makeImagesDisappear);
 /* set the images visibilty to hidden so whe the game
 loads you dont see them. then create an interval that
 allows images to become visible again, and fade out
-again as well.*/
+again as well.
 $img.hide()
 setInterval(function(){
- $img.fadeIn(4000)
-  $img.fadeOut(4000)
-}, 3000);
+ $img.fadeIn(1000)
+  $img.fadeOut(1000)
+}, 200);*/
 
 $crosshair = $('#crosshair')
 
@@ -45,3 +47,38 @@ $crosshair = $('#crosshair')
         })
     })
   }
+
+/*function move() {
+  $("img").animate({
+            left: '+=5px',
+            height: '+=100px',
+            width: '+=10px'
+
+          },300)
+  console.log(left);
+}
+
+setInterval(function(){
+  move();
+}, 300);*/
+
+function movePlayer() {
+  var $player = $('#1');
+  var $start = 0;
+  var $top = 0;
+  setInterval(function() {
+  if ($start < 1200) {
+  $start +=120;
+  $player.css('left', $start +"px");
+  $player.css('top', $top + "px");
+}else {
+  $start = 0;
+}
+  if ($top <= 600) {
+     $top +=80;
+    $player.css('top', $top + "px");
+  }else {
+    $top = 0;
+  }
+  },200);
+}

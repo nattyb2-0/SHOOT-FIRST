@@ -15,3 +15,14 @@ function makeImagesDisappear() {
     $(this).css('visibility' , 'hidden');
 }
 $img.click(makeImagesDisappear);
+
+/* set the images visibilty to hidden so whe the game
+loads you dont see them. then create an interval that
+allows images to become visible again, and fade out
+again as well.*/
+$img.hide()
+setInterval(function(){
+  $img.fadeIn(1000)
+  $img.fadeOut(400)
+}, 1000);
+

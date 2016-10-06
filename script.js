@@ -7,7 +7,8 @@ $( document ).ready(function() {
     movePlayer();
     //move();
 });
-
+/*create global variables needed for this game*/
+var $maxDista
 /* make my players diappear when they are clicked
 create an array to store all my image. then create
 a function taht changes the image display to hidden.
@@ -63,22 +64,62 @@ setInterval(function(){
 }, 300);*/
 
 function movePlayer() {
-  var $player = $('#1');
+
+  var $player = $('#23');
+  var $player2 = $('#22');
+
   var $start = 0;
   var $top = 0;
+
   setInterval(function() {
   if ($start < 1200) {
   $start +=120;
+
   $player.css('left', $start +"px");
   $player.css('top', $top + "px");
+
 }else {
   $start = 0;
+
 }
   if ($top <= 600) {
      $top +=80;
+
     $player.css('top', $top + "px");
+
   }else {
     $top = 0;
+
   }
   },200);
 }
+
+
+/*make backgroun images change every couple of seconds.
+create an array with all the various images
+loop through the array
+add a set interval function in the loop
+*/
+var $background =[
+ 'images/bacground3.jpg',
+ 'images/background1.jpg',
+ 'images/background2.jpg',
+'images/background4.jpg',
+'images/background5.jpg',
+'images/background6.jpg',
+'images/background7.jpg',
+];
+function changeBackground(i) {
+    var $count = $background[i];
+    console.log($count);
+    $('.game-body').css('background-image', ('url('+$count+')'));
+}
+
+var count = 0;
+setInterval(function(){
+  changeBackground(count);
+  count++;
+  if(count>5) {
+    count = 0;
+  }
+},5000)

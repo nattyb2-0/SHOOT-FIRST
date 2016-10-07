@@ -7,7 +7,7 @@
 body {
   height: 100vh;
   width: 100vw;
-  cursor: url(../images/cHair.png), crosshair;
+
 }
 
 .game-body {
@@ -42,12 +42,10 @@ header {
 .gameimg {
     width: 13%;
     height: 300px;
+    position: absolute;
 
   }
-#t23 {
-  position: absolute;
 
-}
 #crosshair{
     position:absolute;
     padding: 0 ;
@@ -115,4 +113,30 @@ input {
   left: 500px;
 }
 
+.scores {
+  position:absolute;
+  bottom:0;
+  left:0;
+}
+.test{
+  height:150px;
+  width:150px;
+  background-image: url('../images/run.gif');
+  background-size: cover;
+  background-repeat: no-repeat;
+  position:absolute;
+  background-color: blue;
+}
+.scores {
+  font-size: 30px;
+  color: white;
+}
 
+#crosshair {
+  z-index: -999;
+}
+
+#t24 {
+  position: absolute;
+  bottom: 0px;
+}

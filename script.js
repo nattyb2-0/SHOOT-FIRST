@@ -50,6 +50,7 @@ $('.scores').html(counting);
       } else if(counting === 0) {
     $('.scores').html('GAME OVER!!!!');
      //displayStats();
+     $(".gameimg").remove();
       clearInterval(counter);
      }
 }

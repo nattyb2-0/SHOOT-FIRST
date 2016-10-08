@@ -3,23 +3,22 @@ console.log('hello');
 //set up jquery for it to work upon the page loading
 $(document).ready(function() {
     console.log( "ready!" );
-    CrossHairMove();
-    movePlayer();
+    //CrossHairMove();
+   // movePlayer();
     countShots();
-    timer();
-    targetMove();
+    //targetMove();
 
 
 
-    //move();
+
 });
-/*create global variables needed for random movement of target*/
+//create global variables needed for random movement of target
 var $maxDistanceX = window.innerWidth;
     $maxDistanceY = window.innerHeight;
     $maxSpeed = 50;
     $minSpeed = 1000;
-    var $randomX = Math.floor(Math.random()*$maxDistanceX);
-    var $randomY = Math.floor(Math.random()*($maxDistanceY-200));
+    var $randomx1 = Math.floor(Math.random()*$maxDistanceX);
+    var $randomy1= Math.floor(Math.random()*($maxDistanceY-90));
     var $randomSpeed = Math.floor(Math.random*($minSpeed));
 
 /*create global variables to track info needed for the game
@@ -29,7 +28,52 @@ var $shotsFired = 0,
     $targetHit = 0,
     $percentage = 0,
     $target1Speed = 1000,
-    $target2Speed= 1000;
+    counting=10,
+     $src2 = "images/run.gif";
+
+
+   var $target2Speed= 1000;
+
+     var $randomX = Math.floor(Math.random()*window.innerWidth);
+      var $randomY= Math.ceil(Math.random()*window.innerHeight);
+       var $randomx2 = Math.floor(Math.random()*(.5*(window.innerWidth)));
+      var $randomy2= Math.floor(Math.random()*(.5*(window.innerHeight)));
+         var $randomx3 = Math.floor(Math.random()*(.2*(window.innerWidth)));
+        var $randomy3= Math.floor(Math.random()*(.2*(window.innerHeight)));
+
+
+function timer(){
+  counting --;
+$('.scores').html(counting);
+      if(counting > 0){
+        levelUp();
+      } else if(counting === 0) {
+    $('.scores').html('GAME OVER!!!!');
+     //displayStats();
+      clearInterval(counter);
+     }
+}
+  var counter =setInterval(timer, 1000);
+
+
+
+function target(){
+var newTarget = $('<img>');
+newTarget.attr({src :$src2,
+                class: "gameimg",
+                position: 'absolute',
+
+});
+newTarget.css({
+  left: $randomx1,
+  top: $randomy1
+});
+newTarget.click(killShot);
+$('body').append(newTarget);
+
+}
+
+
 
 
 /*create function to track the number of shots fired. each time the
@@ -54,49 +98,45 @@ function countShots() {
 
 
 
-/* make my players diappear when they are clicked
-create an array to store all my image. then create
-a function taht changes the image display to hidden.
-attach an event listener to the image array , along with
-my function.*/
-var $img = $('#t23');
-var $img1 =$('#t24')
-function kill() {
-    console.log('click event');
-    $(this).css('visibility', 'hidden');
-    $targetHit++;
-    console.log("target hit" + $targetHit);
-    return $targetHit;
-    if($targetHit ===2 && counting > 0) {
-      level2();
-      counting +=15;
-    }else if($targetHit==4 && counting > 0) {
-      level3();
-      counting+=30;
-    }else if ($targetHit>5 && counting > 0) {
-      alert('You Have Mastered the art of Shoot First!!!')
-    } else {
-      $('.scores').html('GAME OVER!!!!');
-    }
+/* Whe player is clicked, the image should change to blood
+and then disappear. a new image should then be created */
+
+var $img = $('.gameimg');
+$img.click(killShot);
+
+
+
+function afterKill() {
+   $(".gameimg").remove()
+    console.log('body');
+    makeTarget();
+    $targetHit++
+    console.log($targetHit);
+    console.log('its working')
+    movePlayer();
+    calcPercentage();
+
+
+  }
+
+function killShot() {
+
+  console.log('kill');
+  var $src = "images/blood.png";
+  var $src2 = "images/run.gif";
+  $('#t23').attr('src',"images/blood.png" );
+  console.log($src);
+ //$('#t23').fadeOut('3000')
+
+afterKill();
+}
+var $start = 1000;
+  var $top = 1000;
+function movePlayer() {
+  $img.animate({left: 1000}, 2000);
+
 }
 
- $img.click(kill);
- $img1.click(kill);
-
-
-
-/* set the images visibilty to hidden so whe the game
-loads you dont see them. then create an interval that
-allows images to become visible again, and fade out
-again as well.*/
-//$img.hide()
-// setInterval(function(){
-//  $img.fadeIn(1000),
-//   $img.fadeOut(1000),
-//   $img1.fadeIn(1000),
-//   $img1.fadeOut(1000)
-
-// }, 2200);
 
 var $crosshair = $('#crosshair');
 
@@ -108,7 +148,7 @@ var $crosshair = $('#crosshair');
   and attach that to the left and right margins of the crosshair
   so it moves relatively to the mouse movement*/
 
-  function CrossHairMove() {
+ function CrossHairMove() {
     $(document).mousemove(function(e){
         $crosshair.css({
           'left':(e.pageX - 50),
@@ -120,37 +160,6 @@ var $crosshair = $('#crosshair');
 
 
 
-var $start = 0;
-  var $top = 0;
-function movePlayer() {
-
-  var $player2 = $('#t24');
-  setInterval(function() {
-  if ($start < 1200) {
-  $start += Math.floor(Math.random()*$randomX);
-
-  $player2.css('left', (($start-130)*.5));
-  $player2.css('top', (($top-100)*.2))
-  setInterval(function(){
- $img.fadeIn(1000)
-  $img.fadeOut(1000)
-}, 300);
-
-  }else {
-    $start = 0;
-
-}
-  if ($top <= 600) {
-     $top += Math.floor(Math.random()*$randomY);
-
-
-
-  }else {
-    $top = 0;
-
-  }
-  },500);
-}
 
 
 /*make background images change every couple of seconds.
@@ -187,48 +196,37 @@ setInterval(function(){
   }
 },5000)
 
+setInterval(movePlayer,1000);
 
-var counting=10;
+function makeTarget() {
+ var posx = (Math.random() * window.innerWidth);
+  var posy = (Math.random() * window.innerHeight);
+var newTarget = $('<img>');
+newTarget.attr({src :$src2,
+                class: "gameimg",
+              });
+newTarget.click(killShot);
+newTarget.css({
+  'position': "absolute",
+  'left': posx + 'px',
+  'top':posy + 'px'
+}).appendTo('body').fadeOut(10000, function(){
+  $('.gameimg').remove();
+  makeTarget();
+});
+}
 
-var counter=setInterval(timer, 1000);
-
-function timer()
-{
-  counting--;
-$('.scores').html(counting);
-  if (counting <= 0)
-  {
-       $('.scores').html('GAME OVER!!!!');
-
-     clearInterval(counter);
-
-
-
+function levelUp() {
+  if($targetHit==2 && counting != 0) {
+    counting+=15;
+    console.log('level 2');
+  }else if($targetHit === 5 && counting != 0) {
+    counting +=30;
+    console.log('level 3');
+  }else if ($targetHit === 8 && counting != 0) {
+    counting +=60;
+    console.log('level 4')
   }
-
-
 }
 
-function moveRight() {
-  $('#t23').animate({ left: "1200px"},1600);
-}
-function moveDown() {
-   $('#t23').animate({top: "350px"}, 1600);
- }
-function MoveLeft() {
- $('#t23').animate({left: "0px"}, 1600);
-}
-function moveUp() {
-  $('#t23').animate( {top: "0px"}, 1600);
-}
 
-function targetMove() {
-
-  moveRight();
-  moveDown();
-  MoveLeft();
-  moveUp();
-
-}
-
-setInterval(targetMove, 30)

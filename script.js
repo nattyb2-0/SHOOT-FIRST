@@ -2,16 +2,12 @@
 console.log('hello');
 //set up jquery for it to work upon the page loading
 $(document).ready(function () {
-    $('.level').hide();
-    $('.kill').hide();
-    //$targetMove();
+
     console.log("ready!");
-    CrossHairMove();
-   // movePlayer();
-    countShots();
-   // movePlayer();
-    //playGame();
+    playGame();
+
 });
+
 /*create global variables to track info needed for the game
 like the amount of times shots fired, number of targets hit,counter for game
 percentage,speed per level etc*/
@@ -19,30 +15,25 @@ var $shotsFired = 0,
     $targetHit = 0,
     $percentage = 0,
     counting = 10,
-    $src2 = "images/run.gif"
-    $speed = 3000,
-    $tracker = 2;
+    $speed = 3000;
 
 //to play game
 function playGame() {
     $('.level').hide();
-    timer();
-    CrossHairMove();
-    //movePlayer();
+    $('.kill').hide();
     countShots();
-    calcPercentage();
-    killShot()
+    timer();
+    $targetMove();
+    CrossHairMove();
 }
-//function to track the time in the game.
+
+//function to track the time in the game. reduce by 1 sec through loop
+var counter = setInterval(timer, 1000);
 function timer() {
     counting--;
     $('.timer').html(counting);
-    //Check to see if levels requirement have been met.
-    if (counting > 0) {
-        levelUp();
-        // end the game
-    }
-    else if (counting === 0) {
+    /* condition to check time and if time reaches 0 to end game*/
+     if (counting === 0) {
         $('.timer').hide();
         calcPercentage();
         console.log(calcPercentage);
@@ -51,8 +42,8 @@ function timer() {
         clearInterval(counter);
     }
 }
-// run clock through interval ever sec
-var counter = setInterval(timer, 1000);
+
+
 /*create function to track the number of shots fired. each time the
 user clicks on the mouse the variable should increase by 1
 and return the new variable*/
@@ -73,43 +64,15 @@ function calcPercentage() {
 and then disappear. a new image should then be created */
 var $img = $('.gameimg');
 $img.click(killShot);
-/* when the soilders are hit. they should turn into blood and
-disappear from the scree. *****they image is suppose to turn
-into blood first before it disappears but i am having difficulty
-with this*/
-/*function killShot() {
-    console.log('kill');
-    var $src = "images/blood.png";
-    var $src2 = "images/run.gif";
-    $('#t23').attr('src', "images/blood.png");
-    console.log($src);
-    //$('#t23').fadeOut('3000')
-    afterKill();
-}
 
-function afterKill() {
-    $(".gameimg").remove()
-    console.log('body');
-    makeTarget();
-    $targetHit++
-    console.log($targetHit);
-    console.log('its working')
-    movePlayer();
-}
-*/
-/*function movePlayer() {
-    $('.gameimg').animate({
-        left: 1000,
-        top: 100,
-    }, 1000);
-}*/
-var $crosshair = $('#crosshair');
+
 /* create the movement of the crosshair.
   get the crosshair element(div)
   attach an event handler for mouse move
   get the x and y coordinates of the mouse movement on the page
   and attach that to the left and right margins of the crosshair
   so it moves relatively to the mouse movement*/
+var $crosshair = $('#crosshair');
 function CrossHairMove() {
     $(document).mousemove(function (e) {
         $crosshair.css({
@@ -118,30 +81,32 @@ function CrossHairMove() {
         })
     })
 }
+
 /*make background images change every couple of seconds.
 create an array with all the various images
 loop through the array
 add a set interval function in the loop
 */
 var $background = [
-  'http://assets.vg247.com/current//2016/01/cll_of-duty_black_ops_3_gauntlet-600x305.jpg'
- , 'http://cdn.themis-media.com/media/global/images/library/deriv/1265/1265801.png'
- , 'http://www.notebookcheck.net/fileadmin/Notebooks/Sonstiges/Games/Black_Ops_3/mood8_1.jpg'
- , 'http://cdn.segmentnext.com/wp-content/uploads/2016/03/Black-Ops-3-zombies-map-from-DLC-2.jpg'
- , 'https://i.kinja-img.com/gawker-media/image/upload/apazu5gn1v4ulzyowf1o.gif'
- , 'images/bacground3.jpg'
- , 'images/background1.jpg'
- , 'images/background2.jpg'
-, 'images/background4.jpg'
-, 'images/background5.jpg'
-, 'images/background6.jpg'
-, 'images/background7.jpg'
-, ];
+  'http://assets.vg247.com/current//2016/01/cll_of-duty_black_ops_3_gauntlet-600x305.jpg',
+  'http://cdn.themis-media.com/media/global/images/library/deriv/1265/1265801.png',
+  'http://www.notebookcheck.net/fileadmin/Notebooks/Sonstiges/Games/Black_Ops_3/mood8_1.jpg',
+  'http://cdn.segmentnext.com/wp-content/uploads/2016/03/Black-Ops-3-zombies-map-from-DLC-2.jpg',
+  'https://i.kinja-img.com/gawker-media/image/upload/apazu5gn1v4ulzyowf1o.gif',
+  'images/bacground3.jpg',
+  'images/background1.jpg',
+  'images/background2.jpg',
+  'images/background4.jpg',
+  'images/background5.jpg',
+  'images/background6.jpg',
+  'images/background7.jpg',
+  ];
 
 function changeBackground(i) {
     var $count = $background[i];
     $('.game-body').css('background-image', ('url(' + $count + ')'));
 }
+
 var count = 0;
 setInterval(function () {
     changeBackground(count);
@@ -150,53 +115,12 @@ setInterval(function () {
         count = 0;
     }
 }, 5000)
-//setInterval(movePlayer, 300);
 
-/*function makeTarget() {
-    var posx = (Math.random() * window.innerWidth);
-    var posy = (Math.random() * window.innerHeight);
-    var newTarget = $('<img>');
-    newTarget.attr({
-        src: $src2
-        , class: "gameimg"
-    , });
-    newTarget.click(killShot);
-    newTarget.css({
-        'position': "absolute"
-        , 'left': posx + 'px'
-        , 'top': posy + 'px'
-    });
-    newTarget.animate({left: (posx - 50), top: (posy + 50)}, 10)
-
-    newTarget.appendTo('body').fadeOut(10000, function () {
-        $('.gameimg').remove();
-        makeTarget();
-    });
-}
-*/
-function levelUp() {
-    if ($tracker == 2 && counting != 0) {
-        counting += 30;
-        $tracker = 0;
-        $tracker = $targetHit;
-        console.log('level 2');
-        console.log($tracker);
-    }
-    else if ($tracker === 5 && counting != 0) {
-        counting += 45;
-        $tracker = 0;
-        $tracker = $targetHit;
-        console.log('level 3');
-        console.log($tracker)
-    }
-    else if ($tracker === 8 && counting != 0) {
-        counting += 60;
-        $tracker = 0;
-        console.log('level 4');
-    }
-}
 
 function tally() {
+    /* calculates the player's final stats for the game..how many times did
+    he/she shoot, how times was the target hit, and what was the parcentage
+    of kills to shots fired...and then display this on the screen*/
     $('.level').show();
     $('.gameOver').html('GAME OVER!!!');
     $('.totalKill').html('total kill: ' + $targetHit);
@@ -206,7 +130,7 @@ function tally() {
 
 
 function killShot() {
-    /*make target disappear once hit. display blood on the screen and then hide
+    /*makes target disappear once hit. display blood on the screen and then hide
     the blood. make target reppear on screen and move to a different location.
     and increase the speed of the moving target.*/
     console.log('kill');
@@ -219,14 +143,17 @@ function killShot() {
     $speed -= 10;
 }
 
-//function $movement() {
-
-    $(".gameimg").animate({left: (Math.random() * window.innerWidth),
-     top: (Math.random() * window.innerHeight)}, 1500)
-
 function $targetMove () {
+    /*randomly moves player across the screen in various x and y coordinate position*/
     $('.gameimg').animate({
         left: (Math.random() * window.innerWidth),
         top:  (Math.random() * window.innereight)},500)
 }
+
 setInterval($targetMove, 500);
+function startOver() {
+  location.reload();
+}
+$('button').click(startOver);
+
+

@@ -2,6 +2,7 @@
 console.log('hello');
 //set up jquery for it to work upon the page loading
 $(document).ready(function() {
+  $('.level').hide();
     console.log( "ready!" );
     //CrossHairMove();
    // movePlayer();
@@ -12,67 +13,36 @@ $(document).ready(function() {
 
 
 });
-//create global variables needed for random movement of target
-var $maxDistanceX = window.innerWidth;
-    $maxDistanceY = window.innerHeight;
-    $maxSpeed = 50;
-    $minSpeed = 1000;
-    var $randomx1 = Math.floor(Math.random()*$maxDistanceX);
-    var $randomy1= Math.floor(Math.random()*($maxDistanceY-90));
-    var $randomSpeed = Math.floor(Math.random*($minSpeed));
 
 /*create global variables to track info needed for the game
-like the amount of times shots fired, number of targets hit,
-percentage etc*/
+like the amount of times shots fired, number of targets hit,counter for game
+percentage,speed per level etc*/
 var $shotsFired = 0,
     $targetHit = 0,
     $percentage = 0,
-    $target1Speed = 1000,
     counting=10,
-     $src2 = "images/run.gif";
+    $src2 = "images/run.gif",
+    $speed =3000;
 
-
-   var $target2Speed= 1000;
-
-     var $randomX = Math.floor(Math.random()*window.innerWidth);
-      var $randomY= Math.ceil(Math.random()*window.innerHeight);
-       var $randomx2 = Math.floor(Math.random()*(.5*(window.innerWidth)));
-      var $randomy2= Math.floor(Math.random()*(.5*(window.innerHeight)));
-         var $randomx3 = Math.floor(Math.random()*(.2*(window.innerWidth)));
-        var $randomy3= Math.floor(Math.random()*(.2*(window.innerHeight)));
-
-
+//function to track the time in the game.
 function timer(){
   counting --;
-$('.scores').html(counting);
+$('.scores').html(counting+ "hi");
+//Check to see if levels requirement have been met.
       if(counting > 0){
         levelUp();
+// end the game
       } else if(counting === 0) {
     $('.scores').html('GAME OVER!!!!');
-     //displayStats();
+    calcPercentage();
+    console.log(calcPercentage);
+     tally();
      $(".gameimg").remove();
       clearInterval(counter);
      }
 }
-  var counter =setInterval(timer, 1000);
-
-
-
-function target(){
-var newTarget = $('<img>');
-newTarget.attr({src :$src2,
-                class: "gameimg",
-                position: 'absolute',
-
-});
-newTarget.css({
-  left: $randomx1,
-  top: $randomy1
-});
-newTarget.click(killShot);
-$('body').append(newTarget);
-
-}
+// run clock through interval ever sec
+ var counter =setInterval(timer, 1000);
 
 
 
@@ -85,7 +55,6 @@ function countShots() {
       $shotsFired++;
         console.log("shots fired" +$shotsFired);
       return $shotsFired;
-
     })
   }
 
@@ -105,8 +74,19 @@ and then disappear. a new image should then be created */
 var $img = $('.gameimg');
 $img.click(killShot);
 
-
-
+/* when the soilders are hit. they should turn into blood and
+disappear from the scree. *****they image is suppose to turn
+into blood first before it disappears but i am having difficulty
+with this*/
+function killShot() {
+  console.log('kill');
+  var $src = "images/blood.png";
+  var $src2 = "images/run.gif";
+  $('#t23').attr('src',"images/blood.png" );
+  console.log($src);
+ //$('#t23').fadeOut('3000')
+  afterKill();
+}
 function afterKill() {
    $(".gameimg").remove()
     console.log('body');
@@ -115,27 +95,12 @@ function afterKill() {
     console.log($targetHit);
     console.log('its working')
     movePlayer();
-    calcPercentage();
-
-
   }
 
-function killShot() {
 
-  console.log('kill');
-  var $src = "images/blood.png";
-  var $src2 = "images/run.gif";
-  $('#t23').attr('src',"images/blood.png" );
-  console.log($src);
- //$('#t23').fadeOut('3000')
 
-afterKill();
-}
-var $start = 1000;
-  var $top = 1000;
 function movePlayer() {
-  $img.animate({left: 1000}, 2000);
-
+  $('.gameimg').animate({left: 1000}, 2000);
 }
 
 
@@ -218,16 +183,25 @@ newTarget.css({
 }
 
 function levelUp() {
-  if($targetHit==2 && counting != 0) {
-    counting+=15;
+  if($targetHit == 2 && counting != 0) {
+    counting+= 30;
     console.log('level 2');
   }else if($targetHit === 5 && counting != 0) {
-    counting +=30;
+    counting += 45;
     console.log('level 3');
   }else if ($targetHit === 8 && counting != 0) {
-    counting +=60;
-    console.log('level 4')
+    counting += 60;
+    console.log('level 4');
   }
 }
+
+function tally() {
+  $('.level').show();
+  $('.gameOver').html('GAME OVER!!!');
+  $('.totalKill').html('total kill: '+$targetHit);
+  $('.totalShots').html('total shots fired: '+$shotsFired);
+  $('.percentage').html("your accuracy: " +$percentage+"%");
+}
+
 
 

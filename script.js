@@ -3,22 +3,26 @@ console.log('hello');
 //set up jquery for it to work upon the page loading
 $(document).ready(function () {
     $('.level').hide();
+    $('.kill').hide();
+    //$targetMove();
     console.log("ready!");
     CrossHairMove();
-    movePlayer();
+   // movePlayer();
     countShots();
-    movePlayer();
+   // movePlayer();
     //playGame();
 });
 /*create global variables to track info needed for the game
 like the amount of times shots fired, number of targets hit,counter for game
 percentage,speed per level etc*/
-var $shotsFired = 0
-    , $targetHit = 0
-    , $percentage = 0
-    , counting = 10
-    , $src2 = "images/run.gif"
-    , $speed = 3000;
+var $shotsFired = 0,
+    $targetHit = 0,
+    $percentage = 0,
+    counting = 10,
+    $src2 = "images/run.gif"
+    $speed = 3000,
+    $tracker = 2;
+
 //to play game
 function playGame() {
     $('.level').hide();
@@ -73,7 +77,7 @@ $img.click(killShot);
 disappear from the scree. *****they image is suppose to turn
 into blood first before it disappears but i am having difficulty
 with this*/
-function killShot() {
+/*function killShot() {
     console.log('kill');
     var $src = "images/blood.png";
     var $src2 = "images/run.gif";
@@ -92,12 +96,13 @@ function afterKill() {
     console.log('its working')
     movePlayer();
 }
-
-function movePlayer() {
+*/
+/*function movePlayer() {
     $('.gameimg').animate({
-        left: 1000
-    }, 2000);
-}
+        left: 1000,
+        top: 100,
+    }, 1000);
+}*/
 var $crosshair = $('#crosshair');
 /* create the movement of the crosshair.
   get the crosshair element(div)
@@ -145,9 +150,9 @@ setInterval(function () {
         count = 0;
     }
 }, 5000)
-setInterval(movePlayer, 1000);
+//setInterval(movePlayer, 300);
 
-function makeTarget() {
+/*function makeTarget() {
     var posx = (Math.random() * window.innerWidth);
     var posy = (Math.random() * window.innerHeight);
     var newTarget = $('<img>');
@@ -160,23 +165,33 @@ function makeTarget() {
         'position': "absolute"
         , 'left': posx + 'px'
         , 'top': posy + 'px'
-    }).appendTo('body').fadeOut(10000, function () {
+    });
+    newTarget.animate({left: (posx - 50), top: (posy + 50)}, 10)
+
+    newTarget.appendTo('body').fadeOut(10000, function () {
         $('.gameimg').remove();
         makeTarget();
     });
 }
-
+*/
 function levelUp() {
-    if ($targetHit == 2 && counting != 0) {
+    if ($tracker == 2 && counting != 0) {
         counting += 30;
+        $tracker = 0;
+        $tracker = $targetHit;
         console.log('level 2');
+        console.log($tracker);
     }
-    else if ($targetHit === 5 && counting != 0) {
+    else if ($tracker === 5 && counting != 0) {
         counting += 45;
+        $tracker = 0;
+        $tracker = $targetHit;
         console.log('level 3');
+        console.log($tracker)
     }
-    else if ($targetHit === 8 && counting != 0) {
+    else if ($tracker === 8 && counting != 0) {
         counting += 60;
+        $tracker = 0;
         console.log('level 4');
     }
 }
@@ -188,3 +203,30 @@ function tally() {
     $('.totalShots').html('total shots fired: ' + $shotsFired);
     $('.percentage').html("your accuracy: " + $percentage + "%");
 }
+
+
+function killShot() {
+    /*make target disappear once hit. display blood on the screen and then hide
+    the blood. make target reppear on screen and move to a different location.
+    and increase the speed of the moving target.*/
+    console.log('kill');
+    $('.gameimg').fadeOut(100);
+    $('.kill').show();
+    $('.kill').fadeOut(1000);
+    $('.gameimg').fadeIn(100);
+    $('.gameimg').animate({left: (Math.random() * window.innerHeight) , top: (Math.random() * window.innerHeight)},100)
+    $targetHit++;
+    $speed -= 10;
+}
+
+//function $movement() {
+
+    $(".gameimg").animate({left: (Math.random() * window.innerWidth),
+     top: (Math.random() * window.innerHeight)}, 1500)
+
+function $targetMove () {
+    $('.gameimg').animate({
+        left: (Math.random() * window.innerWidth),
+        top:  (Math.random() * window.innereight)},500)
+}
+setInterval($targetMove, 500);

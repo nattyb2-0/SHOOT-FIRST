@@ -1,19 +1,21 @@
 /*clear out the margin and border style for the page*/
+
 * {
     margin: 0;
     padding: 0;
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
-
+    height: 100vh;
+    width: 100vw;
 }
 
 .game-body {
     background-image: url('../images/background1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
 }
 
 header {
@@ -33,31 +35,29 @@ header {
     height: 1000px;
 }
 
-.main-game{
+.main-game {
     width: 100%;
     height: auto;
 }
-
 
 .gameimg {
     width: 13%;
     height: 300px;
     position: absolute;
+}
 
-  }
-
-#crosshair{
-    position:absolute;
-    padding: 0 ;
+#crosshair {
+    position: absolute;
+    padding: 0;
     margin: 0;
-    width:100px;
+    width: 100px;
     cursor: none;
 }
 
 .landing-body {
-      width:100%;
-      height:100%;
-      background-color: rgba(0,0,0,0.4);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .form {
@@ -70,91 +70,98 @@ header {
 }
 
 #form {
-  position: absolute;
-  top: 350px;
-  left: 500px;
+    position: absolute;
+    top: 350px;
+    left: 500px;
 }
-
 
 #submit {
-  width: 390px;
-  display: block;
-  height: 50px;
-  background-color: yellow;
-  font-size: 26px;
-  margin-top: 10px;
-
+    width: 390px;
+    display: block;
+    height: 50px;
+    background-color: yellow;
+    font-size: 26px;
+    margin-top: 10px;
 }
-
 
 input {
-  width: 100px;
-  height: 50px;
-  margin:5px;
-  padding: 8px;
+    width: 100px;
+    height: 50px;
+    margin: 5px;
+    padding: 8px;
 }
 
-
 .flex-box2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  height: 900px;
-  background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 900px;
+    background-color: white;
 }
 
 .rules {
-  width:400px;
-  height: 300px;
-  background-color: rgba(255,0,0,.4);
-  position: absolute;
-  top: 850px;
-  left: 500px;
+    width: 400px;
+    height: 300px;
+    background-color: rgba(255, 0, 0, .4);
+    position: absolute;
+    top: 850px;
+    left: 500px;
+}
+
+.timer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 40px;
+    text-align: center;
+    border: 2px solid black;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 0, 0, .4);
+    color: white;
+    border-radius: 50%;
+    padding-top: 40px;
+}
+
+.test {
+    height: 150px;
+    width: 150px;
+    background-image: url('../images/run.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    background-color: blue;
 }
 
 .scores {
-  position:absolute;
-  bottom:0;
-  left:0;
-}
-.test{
-  height:150px;
-  width:150px;
-  background-image: url('../images/run.gif');
-  background-size: cover;
-  background-repeat: no-repeat;
-  position:absolute;
-  background-color: blue;
-}
-.scores {
-  font-size: 30px;
-  color: white;
+    font-size: 30px;
+    color: white;
 }
 
 #crosshair {
-  z-index: -999;
+    z-index: -999;
 }
 
 #t24 {
-  position: absolute;
-  bottom: 0px;
+    position: absolute;
+    bottom: 0px;
 }
+
 .level {
-  position: absolute;
-  width: 600px;
-  height: auto;
-  background-color: rgba(255,0,0,.4);
-  color: white;
-  text-align: center;
-  padding: 5px;
-  font-size: 35px;
-  top:300px;
-
+    position: absolute;
+    width: 600px;
+    height: auto;
+    background-color: rgba(255, 0, 0, .4);
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-size: 35px;
+    top: 300px;
 }
-button {
-  size: 50px;
-  background-color: blue;
-  color: white;
 
+button {
+    size: 50px;
+    background-color: blue;
+    color: white;
 }

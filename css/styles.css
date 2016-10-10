@@ -256,7 +256,7 @@ footer a {
     -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
     -webkit-animation-iteration-count: 3; /* Chrome, Safari, Opera */
     animation-name: example;
-    animation-duration: 100s;
+    animation-duration: 2s;
     animation-iteration-count: infinite;
 }
 

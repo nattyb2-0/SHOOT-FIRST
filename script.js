@@ -2,7 +2,7 @@
 console.log('hello');
 //set up jquery for it to work upon the page loading
 $(document).ready(function () {
-
+    easy();
     console.log("ready!");
     playGame();
 
@@ -15,7 +15,7 @@ var $shotsFired = 0,
     $targetHit = 0,
     $percentage = 0,
     counting = 60,
-    $speed = 1500,
+    $speed = 30,
     $randomX1,
     $randomX2 = (window.innerWidth + $randomX1) *.8,
     $randomY = Math.random() * window.innerHeight - 50;
@@ -143,7 +143,8 @@ function killShot() {
     $('.gameimg').fadeIn(100);
     //$('.gameimg').animate({left: Math.random() * window.innerHeight , top: Math.random() * window.innerHeight},100)
     $targetHit++;
-    $speed -= 50;
+
+
 }
 
 /*function $targetMove () {
@@ -174,4 +175,9 @@ function getValue(event) {
     }
 }
 $(".submit").click(getValue);
+function easy()  {
+$('.gameimg').css({
+     animationDuration: '30s',
 
+});
+}

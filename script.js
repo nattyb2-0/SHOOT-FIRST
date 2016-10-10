@@ -50,7 +50,7 @@ function timer() {
 user clicks on the mouse the variable should increase by 1
 and return the new variable*/
 function countShots() {
-    $(document).click(function () {
+    $('.game-body').click(function () {
         $shotsFired++;
         console.log("shots fired" + $shotsFired);
         return $shotsFired;

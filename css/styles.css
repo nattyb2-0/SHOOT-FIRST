@@ -1,0 +1,295 @@
+/*clear out the margin and border style for the page*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+.game-body {
+    background-image: url('../images/background1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+h1 {
+    display: inline-block;
+    text-shadow: 3px 3px 20px red;
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    z-index: 9000;
+    background-color: black;
+    color: white;
+    font-size: 25px;
+}
+
+.flex-box1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 1000px;
+}
+
+.main-game {
+    width: 100%;
+    height: auto;
+}
+
+#crosshair {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    width: 100px;
+    cursor: none;
+}
+
+.landing-body {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.form {
+    width: 80%;
+    height: 700px;
+    background-image: url('http://cdn.segmentnext.com/wp-content/uploads/2016/01/Call-of-Duty-Black-Ops-3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 120px;
+}
+
+#form {
+    position: absolute;
+    top: 350px;
+    left: 500px;
+}
+
+#submit {
+    width: 390px;
+    display: block;
+    height: 50px;
+    background-color: yellow;
+    font-size: 26px;
+    margin-top: 10px;
+}
+
+input {
+    width: 100px;
+    height: 50px;
+    margin: 5px;
+    padding: 8px;
+}
+
+.flex-box2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 900px;
+    background-color: rgba(0, 0, 255, .3);
+}
+
+.rules {
+    width: 400px;
+    height: 300px;
+    background-color: rgba(255, 0, 0, .4);
+    position: absolute;
+    top: 850px;
+    left: 500px;
+    z-index: 900;
+}
+
+.rules > h2 {
+    text-align: center;
+    font-size: 50px;
+    margin-top: 80px;
+}
+
+.timer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 40px;
+    text-align: center;
+    border: 2px solid black;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 0, 0, .4);
+    color: white;
+    border-radius: 50%;
+    padding-top: 40px;
+}
+
+.test {
+    height: 150px;
+    width: 150px;
+    background-image: url('../images/run.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    background-color: blue;
+}
+
+.scores {
+    font-size: 30px;
+    color: white;
+}
+
+#crosshair {
+    z-index: -999;
+}
+
+#t24 {
+    position: absolute;
+    bottom: 0px;
+}
+
+.level {
+    position: absolute;
+    width: 600px;
+    height: auto;
+    background-color: rgba(255, 0, 0, .4);
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-size: 35px;
+    top: 300px;
+}
+
+button {
+    size: 50px;
+    background-color: blue;
+    color: white;
+}
+
+.kill {
+    height: 60%;
+    width: 60%;
+    position: absolute;
+    top: 300px;
+    background-image: url('../images/blood.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.logo {
+    background: transparent;
+    height: 80px;
+    width: 200px;
+}
+
+header a {
+    position: absolute;
+    right: 100px;
+    top: 40px;
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: green;
+}
+
+.instructions {
+    width: 80%;
+    height: 500px;
+    background-image: url('http://technojourney.com/wp-content/uploads/2012/07/five-best-first-person-shooter-games.jpg');
+    background-size: 1200px 600px;
+    background-repeat: no-repeat;
+    top: 800px;
+    margin: 0 auto;
+}
+
+section {
+    padding: 150px 30px 50px 30px;
+    color: white;
+    font-family: 'Audiowide', cursive;
+    font-size: 28px;
+}
+
+footer {
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    height: 90px;
+    margin-top: 30px;
+}
+
+footer a {
+    font-size: 28px;
+    padding: 65px;
+    margin-top: 25px;
+    color: white;
+    text-decoration: none;
+}
+
+.gameimg {
+    width: 13%;
+    height: 300px;
+    position: absolute;
+    /*  animation tricks from w3c school*/
+    -webkit-animation-name: example;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: 3;
+    animation-name: example;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes example {
+    0% {
+        left: 0px;
+        top: 200px;
+    }
+    10% {
+        left: 1100px;
+        top: 0px;
+    }
+    20% {
+        left: 0px;
+        top: 500px;
+    }
+    30% {
+        left: 1100px;
+        top: 30px;
+    }
+    40% {
+        left: 1100px;
+        top: 500px;
+    }
+    50% {
+        left: 100px;
+        top: 50px;
+    }
+    60% {
+        left: 1100px;
+        top: 500px;
+    }
+    70% {
+        left: 10px;
+        top: 300px;
+    }
+    80% {
+        left: 0px;
+        top: 500px;
+    }
+    90% {
+        left: 1100px;
+        top: 0px;
+    }
+    100% {
+        left: 0px;
+        top: 200px;
+    }
+}

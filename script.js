@@ -14,16 +14,18 @@ percentage,speed per level etc*/
 var $shotsFired = 0,
     $targetHit = 0,
     $percentage = 0,
-    counting = 10,
-    $speed = 3000;
-
+    counting = 60,
+    $speed = 1500,
+    $randomX1,
+    $randomX2 = (window.innerWidth + $randomX1) *.8,
+    $randomY = Math.random() * window.innerHeight - 50;
 //to play game
 function playGame() {
     $('.level').hide();
     $('.kill').hide();
     countShots();
     timer();
-    $targetMove();
+   // $targetMove();
     CrossHairMove();
 }
 
@@ -75,9 +77,10 @@ $img.click(killShot);
 var $crosshair = $('#crosshair');
 function CrossHairMove() {
     $(document).mousemove(function (e) {
+        $randomX1 = e.pageX;
         $crosshair.css({
-            'left': (e.pageX - 50)
-            , 'top': (e.pageY - 50)
+            'left': (e.pageX - 50),
+             'top': (e.pageY - 50)
         })
     })
 }
@@ -138,22 +141,49 @@ function killShot() {
     $('.kill').show();
     $('.kill').fadeOut(1000);
     $('.gameimg').fadeIn(100);
-    $('.gameimg').animate({left: (Math.random() * window.innerHeight) , top: (Math.random() * window.innerHeight)},100)
+    $('.gameimg').animate({left: Math.random() * window.innerHeight , top: Math.random() * window.innerHeight},100)
     $targetHit++;
-    $speed -= 10;
+    $speed -= 50;
 }
 
 function $targetMove () {
     /*randomly moves player across the screen in various x and y coordinate position*/
+    console.log($speed);
     $('.gameimg').animate({
-        left: (Math.random() * window.innerWidth),
-        top:  (Math.random() * window.innereight)},500)
+        left: (Math.random()* $randomX2),
+        top:  (Math.random() * $randomY)},$speed)
 }
 
-setInterval($targetMove, 500);
+//setInterval($targetMove, $speed);
 function startOver() {
   location.reload();
 }
 $('button').click(startOver);
 
 
+
+function moveRight() {
+   $('.gameimg').animate({left: "1100px"},800 );
+ }
+function MoveLeft() {
+ $('.gameimg').animate({left: "10px"}, 800);
+}
+function moveDown() {
+  $('.gameimg').animate({top: '600px', left: '1100px', height: '800px'},500);
+}
+function moveUp()   {
+    $('.gameimg').animate({top: '0px', left: '1100px', height: "100px"},500 )
+}
+function playerMove() {
+moveRight();
+MoveLeft();
+moveDown();
+MoveLeft();
+moveUp();
+MoveLeft();
+}
+function backandforth() {
+    $('.gameimg').animate({left: 1200}, 1000);
+    $('.gameimg').animate({left: 0}, 1000);
+}
+setInterval(backandforth,1000)

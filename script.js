@@ -187,3 +187,17 @@ function backandforth() {
     $('.gameimg').animate({left: 0}, 1000);
 }
 setInterval(backandforth,1000)
+var $year;
+function getValue(event) {
+    $year=  parseInt($(".year").val());
+    var currentYear = 2016;
+    console.log($year);
+    if(!/^[0-9]+$/.test($year)){
+    alert("Please only enter numeric characters only for your Age");
+    event.preventDefault();
+    } else if (currentYear - $year < 18){
+        event.preventDefault();
+    }
+}
+$(".submit").click(getValue);
+

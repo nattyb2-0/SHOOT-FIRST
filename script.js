@@ -141,18 +141,18 @@ function killShot() {
     $('.kill').show();
     $('.kill').fadeOut(1000);
     $('.gameimg').fadeIn(100);
-    $('.gameimg').animate({left: Math.random() * window.innerHeight , top: Math.random() * window.innerHeight},100)
+    //$('.gameimg').animate({left: Math.random() * window.innerHeight , top: Math.random() * window.innerHeight},100)
     $targetHit++;
     $speed -= 50;
 }
 
-function $targetMove () {
-    /*randomly moves player across the screen in various x and y coordinate position*/
+/*function $targetMove () {
+    randomly moves player across the screen in various x and y coordinate position*
     console.log($speed);
     $('.gameimg').animate({
         left: (Math.random()* $randomX2),
         top:  (Math.random() * $randomY)},$speed)
-}
+}*/
 
 //setInterval($targetMove, $speed);
 function startOver() {
@@ -161,32 +161,6 @@ function startOver() {
 $('button').click(startOver);
 
 
-
-function moveRight() {
-   $('.gameimg').animate({left: "1100px"},800 );
- }
-function MoveLeft() {
- $('.gameimg').animate({left: "10px"}, 800);
-}
-function moveDown() {
-  $('.gameimg').animate({top: '600px', left: '1100px', height: '800px'},500);
-}
-function moveUp()   {
-    $('.gameimg').animate({top: '0px', left: '1100px', height: "100px"},500 )
-}
-function playerMove() {
-moveRight();
-MoveLeft();
-moveDown();
-MoveLeft();
-moveUp();
-MoveLeft();
-}
-function backandforth() {
-    $('.gameimg').animate({left: 1200}, 1000);
-    $('.gameimg').animate({left: 0}, 1000);
-}
-setInterval(backandforth,1000)
 var $year;
 function getValue(event) {
     $year=  parseInt($(".year").val());
